@@ -1,7 +1,24 @@
 from flask import Flask,request,redirect,render_template,session
+from pymongo import Connection,MongoClient
 
+################################ mongo stuff ############################ 
+client = MongoClient()
+db = client['portas-troiae']
+#collection = db['user-info']
+
+def add(username,password):
+    #adds to the database
+    db.users.insert({'name': username, 'password': password})
+
+def check(username, password):
+    #makes sure the usrname and password are valid
+
+
+
+
+
+################################ webapp stuff ###########################
 app=Flask(__name__)
-
 
 @app.route("/")
 def base():
