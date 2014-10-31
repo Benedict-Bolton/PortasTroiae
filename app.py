@@ -16,6 +16,9 @@ def check(username, password):
     if db.users.find( {'name': name} ):
         #this user already exists
         return False
+    if len(password) < 4:
+        #password is too short
+        return False
     else:
         return True
     
