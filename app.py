@@ -13,7 +13,7 @@ def add(username,password):
 
 def check(username, password):
     #makes sure the username and password are valid
-    if db.users.find( {'name': name} ):
+    if db.users.find( {'name': name} ) != null: #not sure how to do this?!
         #this user already exists
         return False
     if len(password) < 4:
@@ -76,7 +76,7 @@ def logout():
 def about():
     return render_template("Aenead.html")
 
-@app.route("/DidYouSleep")
+@app.route("/DidYouSleep") #lolnever
 def cheater():
     return render_template("Cladius.html")
 
