@@ -1,3 +1,4 @@
+
 from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
 
@@ -8,16 +9,22 @@ db = client['portas-troiae']
 
 def add(username,password):
     #adds to the database
-    db.users.insert({'name': username, 'password': password})
+    db.users.insert( {'name': username, 'password': password} )
 
 def check(username, password):
-    #makes sure the usrname and password are valid
-
+    #makes sure the username and password are valid
+    if db.users.find( {'name': name} ):
+        #this user already exists
+        return False
+    else:
+        return True
+    
 
 
 
 
 ################################ webapp stuff ###########################
+
 app=Flask(__name__)
 
 @app.route("/")
@@ -37,6 +44,7 @@ def index():
         #get info in login fields, verify it                                 
         #if it works -> send to caligula ;)                                  
         #if not -> back to login.html with error message                     
+        pass
     return render_template("index.html",logging = logging, success = 0)
 
 @app.route("/register")
@@ -44,13 +52,13 @@ def res():
     return render_template("register.html")
 
 @app.route("/registering")
-def regis:
+def regis():
     success = 0
     if request.method=='POST':
         #get the info from the fields                                        
-        #some verification (don't overlap with any name already in the datab\
-ase)                                                                         
-        #put into the database                                               
+        #some verification (don't overlap with any name already in the databass
+        #put into the database
+        pass
     return redirect("/", success = success, logging = 0)
 
 
