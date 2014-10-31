@@ -3,6 +3,10 @@ PortasTroiae
 
 Hail Caesar!
 
+first and foremost: omfgdogs.com
+
+his dictis
+
 This is the plan:
 - 10.30.14: do some of the mongo stuff
   - add username and password
