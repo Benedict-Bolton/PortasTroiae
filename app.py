@@ -49,12 +49,14 @@ def index():
         #if not -> back to login.html with error message
         username=request.form["username"]
         password=request.form["password"]
+        #mongo stuff goes here
     if "user" not in session:
       session['user'] = username
     return redirect("/cladius")
+
 @app.route("/cladius")
 def test():
-  if 'user' in session:
+  if 'user' in session:#if logged in
     return render_template("cladius.html")
   else:
     return render_template('fail.html')
