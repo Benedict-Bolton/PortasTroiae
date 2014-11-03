@@ -1,0 +1,53 @@
+<head>
+<link rel="shortcut icon" href="/static/icon.ico">
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Welcome!</title>
+
+        <link rel="stylesheet"
+        href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+<style>
+body{
+        wWidth  = $window.width();
+        wHeight = $window.height();
+	width:500px;
+	height:150px;
+	position:relative;
+	left:40%;
+	top:20%;
+	margin:-70px 0 0 -135px;
+}
+section{
+  font-weight: normal;
+  font-family: 'Catull', serif;
+  font-size:34px;
+  line-height: 38px;
+  text-shadow: 0 2px white, 0 3px #777;
+}
+.button-submit{
+        color: white;
+        border-radius: 4px;
+        background: rgb(70, 130, 240);
+        }
+</style>
+</head>
+<body>
+<center>
+<section>
+  <h1>Vene Per Porta</h1>
+</section>
+
+<form name="input" class="pure-form" action="/logging" method="POST">
+ <input type="text" class="pure-input-rounded" name="username" placeholder="Nomen">
+ <br><br>
+ <input type="text" class="pure-input-rounded" name="password" placeholder="Vestra Res">
+ <br><br>
+<input type="submit" value="Submit" class="button-submit pure-button">
+</form>
+
+<a class="pure-button" href="/cladius">Termina Ubi</a>
+
+</center>
+</body>

@@ -2,8 +2,8 @@
 from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
 
-################################ mongo stuff ############################ 
-client = MongoClient()
+################################ mongo stuff ############################
+'''client = MongoClient()
 db = client['portas-troiae']
 #collection = db['user-info']
 
@@ -21,10 +21,10 @@ def check(username, password):
         return False
     else:
         return True
-    
 
 
 
+'''
 
 ################################ webapp stuff ###########################
 
@@ -32,23 +32,33 @@ app=Flask(__name__)
 
 @app.route("/")
 def base():
-    success = 0
+    """success = 0
     logging = 0
     if 'n' not in session:
         session['n']= "save in session"
         return "session set"
     else:
-        return sessions['n']
-    return render_template("login.html", success = success, logging = logging)
+        return sessions['n']"""
+    return render_template("testLogin.html", success = 0, logging = 0)
 
 @app.route("/logging", methods=['POST'])
 def index():
     if request.method=='POST':
-        #get info in login fields, verify it                                 
-        #if it works -> send to caligula ;)                                  
-        #if not -> back to login.html with error message                     
-        pass
-    return render_template("index.html",logging = logging, success = 0)
+        #get info in login fields, verify it
+        #if it works -> send to caligula ;)
+        #if not -> back to login.html with error message
+        username=request.form["username"]
+        password=request.form["password"]
+    if "user" not in session:
+      session['user'] = username
+    return redirect("/cladius")
+@app.route("/cladius")
+def test():
+  if 'user' in session:
+    return render_template("cladius.html")
+  else:
+    return render_template('fail.html')
+
 
 @app.route("/register")
 def res():
@@ -58,7 +68,7 @@ def res():
 def regis():
     success = 0
     if request.method=='POST':
-        #get the info from the fields                                        
+        #get the info from the fields
         #some verification (don't overlap with any name already in the databass
         #put into the database
         pass
@@ -67,8 +77,8 @@ def regis():
 
 @app.route("/logout")
 def logout():
-    #remove session                                                          
-    #return base (with message)                                              
+    #remove session
+    #return base (with message)
     session.pop('n',None)
     return redirect("/")
 
