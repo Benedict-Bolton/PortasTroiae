@@ -3,8 +3,8 @@ from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
 
 ################################ mongo stuff ############################
-'''client = MongoClient()
-db = client['portas-troiae']
+conn=Connection()
+db = conn['portas-troiae']
 #collection = db['user-info']
 
 def add(username,password):
@@ -24,7 +24,6 @@ def check(username, password):
 
 
 
-'''
 
 ################################ webapp stuff ###########################
 
@@ -32,13 +31,6 @@ app=Flask(__name__)
 
 @app.route("/")
 def base():
-    """success = 0
-    logging = 0
-    if 'n' not in session:
-        session['n']= "save in session"
-        return "session set"
-    else:
-        return sessions['n']"""
     return render_template("testLogin.html", success = 0, logging = 0)
 
 @app.route("/logging", methods=['POST'])
@@ -49,14 +41,13 @@ def index():
         #if not -> back to login.html with error message
         username=request.form["username"]
         password=request.form["password"]
-        #mongo stuff goes here
+    #if authenticate(username, 
     if "user" not in session:
       session['user'] = username
     return redirect("/cladius")
-
 @app.route("/cladius")
 def test():
-  if 'user' in session:#if logged in
+  if 'user' in session:
     return render_template("cladius.html")
   else:
     return render_template('fail.html')
