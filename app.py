@@ -10,10 +10,12 @@ db = conn['portas-troiae']
 def add(username,password):
     #adds to the database
     db.users.insert( {'name': username, 'password': password} )
+    print "addded"
 
 def check(username, password):
     #makes sure the username and password are valid
-    if db.users.find( {'name': name} ) != null: #not sure how to do this?!
+    print db.users.find( {'name': username} )
+    if db.users.find( {'name': username} ) != None:
         #this user already exists
         return False
     if len(password) < 4:
@@ -31,6 +33,9 @@ app=Flask(__name__)
 
 @app.route("/")
 def base():
+    print add("rebecca", "benedict")
+    print check("rebecca", "benedict")
+    print check("b", "doctor")
     return render_template("testLogin.html", success = 0, logging = 0)
 
 @app.route("/logging", methods=['POST'])
@@ -45,6 +50,7 @@ def index():
     if "user" not in session:
       session['user'] = username
     return redirect("/cladius")
+
 @app.route("/cladius")
 def test():
   if 'user' in session:
