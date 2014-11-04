@@ -36,7 +36,7 @@ def base():
     print add("rebecca", "benedict")
     print check("rebecca", "benedict")
     print check("b", "doctor")
-    return render_template("testLogin.html", success = 0, logging = 0)
+    return render_template("login.html", success = 0, logging = 0)
 
 @app.route("/logging", methods=['POST'])
 def index():
