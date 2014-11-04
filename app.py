@@ -14,9 +14,7 @@ def add(username,password):
 
 def check(username, password):
     #makes sure the username and password are valid
-    thing = None
-    for post in db.users.find( {'name':username}):
-      thing = post["name"]
+    thing = capere("name", username, "name")
     print thing
     if thing != None:
         #this user already exists
@@ -26,6 +24,24 @@ def check(username, password):
         return False
     else:
         return True
+
+#helper function to get stuff from database:
+def capere (field, data, want):
+  thing = None
+  for post in db.users.find( {field:data} ):
+    thing = post[want]
+  return thing
+
+
+def authenticate (username, password):
+    verusPass = capere("name", username, "password")
+    if verusPass == password:
+      return True
+    else:
+      return False
+
+
+
 
 
 
