@@ -25,6 +25,8 @@ def check(username, password):
     else:
         return True
 
+
+
 #helper function to get stuff from database:
 def capere (field, data, want):
   thing = None
@@ -52,9 +54,9 @@ app=Flask(__name__)
 
 @app.route("/")
 def base():
-    add("rebecca", "benedict")
-    print check("rebecca", "benedict")
-    print check("b", "doctor")
+    #print authenticate("rebecca", "benedict")
+    #print authenticate("rebecca", "yuste")
+    #print check("b", "doctor")
     return render_template("login.html", success = 0, logging = 0)
 
 @app.route("/logging", methods=['POST'])
@@ -65,10 +67,12 @@ def index():
         #if not -> back to login.html with error message
         username=request.form["username"]
         password=request.form["password"]
-    #if authenticate(username,
-    if "user" not in session:
-      session['user'] = username
-    return redirect("/cladius")
+    if autheticate(username, password):
+      if "user" not in session:
+        session['user'] = username
+      return redirect("/cladius", logging = True)
+    else:
+      return redirect("/", logging = logging)
 
 @app.route("/cladius")
 def test():
@@ -84,13 +88,17 @@ def res():
 
 @app.route("/registering")
 def regis():
-    success = 0
     if request.method=='POST':
         #get the info from the fields
         #some verification (don't overlap with any name already in the databass
         #put into the database
-        pass
-    return redirect("/", success = success, logging = 0)
+        username =request.form['username']
+        password=request.form['password']
+    if check(username, password):
+      add(username,password)
+      return redirect("/", success = True)
+    else:
+      return redirect("register", success = False)
 
 
 @app.route("/logout")
