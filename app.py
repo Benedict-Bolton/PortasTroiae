@@ -2,6 +2,11 @@
 from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
 
+
+#Sorry Mr.Z
+global LoginButtonPressed = False
+global RegisterButtonPressed = False
+
 ################################ mongo stuff ############################
 conn=Connection()
 db = conn['portas-troiae']
@@ -57,7 +62,17 @@ def base():
     #print authenticate("rebecca", "benedict")
     #print authenticate("rebecca", "yuste")
     #print check("b", "doctor")
-    return render_template("login.html", success = 0, logging = 0)
+    if "logging" in session:
+      if session["logging"]:
+        return render_template("home.html", logging = session["logging"])
+      else:
+        return render_template("login.html", logging = session["logging"])
+    if "success" in session:
+      if session["success"]:
+        return render_template("login.html", success = session["success"])
+      else:
+        return render_template("login.html", success = session['success'])
+    return render_template("login.html")
 
 @app.route("/logging", methods=['POST'])
 def index():
@@ -67,12 +82,14 @@ def index():
         #if not -> back to login.html with error message
         username=request.form["username"]
         password=request.form["password"]
-    if autheticate(username, password):
+    if authenticate(username, password):
       if "user" not in session:
         session['user'] = username
-      return redirect("/cladius", logging = True)
+      session['logging'] = True
+      return redirect("/")
     else:
-      return redirect("/", logging = logging)
+      session['logging'] = False
+      return redirect("/")
 
 @app.route("/cladius")
 def test():
@@ -80,11 +97,6 @@ def test():
     return render_template("cladius.html")
   else:
     return render_template('fail.html')
-
-
-@app.route("/register")
-def res():
-    return render_template("register.html")
 
 @app.route("/registering")
 def regis():
@@ -96,9 +108,12 @@ def regis():
         password=request.form['password']
     if check(username, password):
       add(username,password)
-      return redirect("/", success = True)
+      session["success"] = True
+      return redirect("/")
     else:
-      return redirect("register", success = False)
+      session["success"] = True
+      return redirect("/")
+      
 
 
 @app.route("/logout")
