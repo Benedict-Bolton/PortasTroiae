@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<body>
+<center>
+<section
+  <h1> Scribe Nomen Tui </hi>
+</section>
+<br><br>
+
+<form name="input" class="pure-form" action="/registering" method="POST">
+  <input type="text" class="pure-input-rounded" name="username" placeholder="Nomen">
+  <br><br>
+  <input type="text" class="pure-input-rounded" name="password" placeholder="Vestra Res">
+  <br><br>
+  <input type="submit" value="Register" class="button-submit pure-button">
+</form>
+
+
+
+{% endblock bodycontent %}
