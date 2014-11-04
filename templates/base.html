@@ -15,24 +15,39 @@ body{
 	width:700px;
 	height:150px;
 	position:relative;
-	left:35%;
+	left:40%;
 	top:20%;
 	margin:-70px 0 0 -135px;
+background-color: pink;
 }
+
 section{
   font-weight: normal;
-  font-family: 'Catull', serif;
-  font-size:34px;
   line-height: 38px;
-  text-shadow: 0 2px white, 0 3px #777;
 }
 .button-submit{
         color: white;
         border-radius: 4px;
-        background: rgb(70, 130, 240);
+        background:white;
         }
+.pure-button{
+color: black;
+background: white;
+}
 </style>
 </head>
+</style>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">Portas Troiae</a>
+        <ul>
+            <li class="pure-menu-selected"><a href="#">Home</a></li>
+            <li><a href="#">{{ logged }}</a></li>
+        </ul>
+    </div>
+</div>
+<br>
 
 {% block bodycontent %}
 This is a placeholder
