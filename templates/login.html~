@@ -13,7 +13,6 @@
  <input type="text" class="pure-input-rounded" name="password" placeholder="Vestra Res">
  <br><br>
 <input type="submit" value="Submit" class="button-submit pure-button">
-<input type="submit" value="Register" class="button-submit pure-button">
 </form>
 <br>
 <br>
