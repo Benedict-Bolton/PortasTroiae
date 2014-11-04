@@ -14,8 +14,11 @@ def add(username,password):
 
 def check(username, password):
     #makes sure the username and password are valid
-    print db.users.find( {'name': username} )
-    if db.users.find( {'name': username} ) != None:
+    thing = None
+    for post in db.users.find( {'name':username}):
+      thing = post["name"]
+    print thing
+    if thing != None:
         #this user already exists
         return False
     if len(password) < 4:
@@ -33,7 +36,7 @@ app=Flask(__name__)
 
 @app.route("/")
 def base():
-    print add("rebecca", "benedict")
+    add("rebecca", "benedict")
     print check("rebecca", "benedict")
     print check("b", "doctor")
     return render_template("testLogin.html", success = 0, logging = 0)
@@ -46,7 +49,7 @@ def index():
         #if not -> back to login.html with error message
         username=request.form["username"]
         password=request.form["password"]
-    #if authenticate(username, 
+    #if authenticate(username,
     if "user" not in session:
       session['user'] = username
     return redirect("/cladius")
