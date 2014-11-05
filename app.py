@@ -3,9 +3,6 @@ from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
 
 
-#Sorry Mr.Z
-global LoginButtonPressed = False
-global RegisterButtonPressed = False
 
 ################################ mongo stuff ############################
 conn=Connection()
@@ -113,7 +110,7 @@ def regis():
     else:
       session["success"] = True
       return redirect("/")
-      
+
 
 
 @app.route("/logout")
