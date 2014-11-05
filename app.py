@@ -148,9 +148,15 @@ def omfg():
         return redirect("/")
 
 @app.route("/caligula")
-def omfg():
+def caligula():
     if 'user' in session:
         return render_template("caligula.html")
+    else:
+        return redirect("/")
+@app.route("/bees")
+def bees():
+    if 'user' in session:
+        return render_template("bees.html")
     else:
         return redirect("/")
 
