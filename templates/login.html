@@ -6,6 +6,7 @@
 <section>
   <h1>Vene Per Porta</h1>
 </section>
+
 {% if logging is defined %}
   {% if logging%}
   <h2> You Have Successfully Logged In!</h2>
@@ -20,6 +21,7 @@
   <h2> There was an issue with your registration, please try again. </h2>
   {% endif %}
 {% endif %}
+
 <form name="input" class="pure-form" method="POST">
  <input type="text" class="pure-input-rounded" name="username" placeholder="Nomen">
  <br><br>
@@ -28,12 +30,6 @@
 <input type="submit" href = "/logging" value="Login" class="button-submit pure-button">
 <input type="submit" href ="/registering" value="Register" class="button-submit pure-button">
 </form>
-<br>
-<br>
-<a class="pure-button" href="/cladius">Primus Locus</a>
-<a class="pure-button" href="/register">Sribe Nomen Tui</a>
-<a class="pure-button" href="/caligula">Infandus Locus</a>
-<a class="pure-button" href="/dogs">Locus Canorum</a>
 </center>
 </body>
 {% endblock bodycontent %}
