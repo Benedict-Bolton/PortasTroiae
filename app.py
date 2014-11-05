@@ -115,7 +115,6 @@ def regis():
       return redirect("/")
       
 
-
 @app.route("/logout")
 def logout():
     #remove session
@@ -123,17 +122,37 @@ def logout():
     session.pop('n',None)
     return redirect("/")
 
-@app.route("/aboutLogIn")
+@app.route("/about")
 def about():
-    return render_template("Aenead.html")
+    return render_template("about.html")
 
-@app.route("/DidYouSleep") #lolnever
-def cheater():
-    return render_template("Cladius.html")
+@app.route("/home") 
+def home():
+    if 'user' in session:
+        return render_template("home.html")
+    else:
+        return redirect("/")
 
-@app.route("/Pokemon")
+@app.route("/caesar")
 def hail():
-    return render_template("Caesar.html")
+    if 'user' in session:
+        return render_template("caesar.html")
+    else:
+        return redirect("/")
+
+@app.route("/dogs")
+def omfg():
+    if 'user' in session:
+        return render_template("dogs.html")
+    else:
+        return redirect("/")
+
+@app.route("/caligula")
+def omfg():
+    if 'user' in session:
+        return render_template("caligula.html")
+    else:
+        return redirect("/")
 
 if __name__=="__main__":
     app.secret_key="Don't put this on github"
