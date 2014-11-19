@@ -61,10 +61,12 @@ def base():
     #print check("b", "doctor")
     #Yes this is a copy of user, but at 4:38 the time is already wasted and we will clean the code later today and for later incarnations
     print "logging" in session
+
     if "logged" not in session:
       session['logged'] = False
     if 'user' not in session:
       session['user'] = ""
+
     if "logging" in session:
       logging = session["logging"]
       print logging
@@ -73,6 +75,7 @@ def base():
         return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
       else:
         return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
+
     if "success" in session:
       success = session["success"]
       session.pop("success", None)
@@ -80,10 +83,12 @@ def base():
         return render_template("login.html", success = success, logged = session['logged'], user = session['user'])
       else:
         return render_template("register.html", success = success, logged = session['logged'], user = session['user'])
+
     return render_template("login.html", logged = session['logged'], user = session['user'])
 
 @app.route("/register", methods=["GET", 'POST'])
 def register():
+
   if "logging" in session:
     logging = session["logging"]
     print logging
@@ -92,14 +97,16 @@ def register():
       return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
     else:
       return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
-  if "success" in session:
+ 
+ if "success" in session:
     success = session["success"]
     session.pop("success", None)
     if success:
       return render_template("login.html", success = success, logged = session['logged'], user = session['user'])
     else:
       return render_template("register.html", success = success, logged = session['logged'], user = session['user'])
-  return render_template("register.html", logged = session['logged'], user = session['user'])
+ 
+ return render_template("register.html", logged = session['logged'], user = session['user'])
 
 @app.route("/logging", methods=['POST'])
 def index():
@@ -167,14 +174,17 @@ def about():
 #Ruuun Trees Ruuunnnn, the logging is coming!!!
 @app.route("/home")
 def home():
-  if "logging" in session:
+ 
+ if "logging" in session:
     logging = session["logging"]
     session.pop("logging", None)
     if logging:
       return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
     else:
       return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
+
   return render_template("home.html", logged=session["logged"])
+
 @app.route("/caesar")
 def hail():
     if session['logged']:
