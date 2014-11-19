@@ -15,6 +15,3 @@ This is the plan:
   - create the other pages (mostly html/jinga stuff)
   - getting info from the fields/ making sure the mongo stuff can work
   - moving between pages and remembering that you're logged in
-  - 
-  
-HI benedict: I was reading up on decorators but then I had to go eat dinner with my family so if you see this before I get back-- I will be back soon!
